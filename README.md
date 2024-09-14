@@ -9,15 +9,15 @@ This is a fairly complete implementation of a CHIP-8 virtual machine however the
 
 Requires cmake and SDL2:
 ```
-$ sudo apt-get install cmake libsdl2-dev
+ sudo apt-get install cmake libsdl2-dev
 ```
 
 Compile:
 ```
-$ mkdir build
-$ cd build
-$ cmake ..
-$ make
+ mkdir build
+ cd build
+ cmake ..
+ make
 ```
 
 Run:
