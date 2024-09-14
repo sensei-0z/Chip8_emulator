@@ -4,7 +4,6 @@
 #include "stdint.h"
 #include "SDL2/SDL.h"
 
-
 #include "chip8.h"
 
 using namespace std;
@@ -74,7 +73,6 @@ int main(int argc, char **argv) {
 
     // Temporary pixel buffer
     uint32_t pixels[2048];
-
 
     load:
     // Attempt to load ROM
