@@ -1,5 +1,4 @@
 # Chip8_emulator
-# CHIP-8-Emulator
 A CHIP-8 emulator in C++
 
 ![Space Invaders](doc/screenshots/invaders.png "Space Invaders")
