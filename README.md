@@ -24,7 +24,7 @@ Run:
 ```
 ./chip8 <ROM file>
 ```
-23 (public domain) ROMs are included in the `roms` directory.
+1 (public domain) ROM is included in the `roms` directory.
 
 ## References
 Some helpful resources I used when writing this
