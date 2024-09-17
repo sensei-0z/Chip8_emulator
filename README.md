@@ -22,7 +22,7 @@ Compile:
 
 Run:
 ```
-./chip8 <ROM file>
+./chip8 ../roms/PONG
 ```
 1 (public domain) ROM is included in the `roms` directory.
 
