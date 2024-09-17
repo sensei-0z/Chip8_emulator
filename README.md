@@ -2,6 +2,7 @@
 A CHIP-8 emulator in C++
 
 HIP-8, a programming language created by Joseph Weisbecker in the 1970s, was designed to simplify game development on early microcomputers like the COSMAC VIP and Telmac 1800. CHIP-8 programs are executed using a virtual machine, a software simulation of a computer. 
+
 This implementation of a CHIP-8 virtual machine is quite comprehensive but currently lacks sound capabilities.
 
 ## Compiling and Running
