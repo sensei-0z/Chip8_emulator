@@ -142,7 +142,8 @@ void Chip8::emulate_cycle()
         // 00E_
         case 0x0000:
 
-            switch (opcode & 0x000F) {
+            switch (opcode & 0x000F) 
+            {
                 // 00E0 - Clear screen
                 case 0x0000:
                     for (int i = 0; i < 2048; ++i)
