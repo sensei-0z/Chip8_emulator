@@ -72,7 +72,8 @@ void Chip8::init()
 }
 
 // Initialise and load ROM into memory
-bool Chip8::load(const char *file_path) {
+bool Chip8::load(const char *file_path) 
+{
     // Initialise
     init();
 
@@ -80,7 +81,8 @@ bool Chip8::load(const char *file_path) {
 
     // Open ROM file
     FILE* rom = fopen(file_path, "rb");
-    if (rom == NULL) {
+    if (rom == NULL) 
+    {
         std::cerr << "Failed to open ROM" << std::endl;
         return false;
     }
@@ -92,26 +94,31 @@ bool Chip8::load(const char *file_path) {
 
     // Allocate memory to store rom
     char* rom_buffer = (char*) malloc(sizeof(char) * rom_size);
-    if (rom_buffer == NULL) {
+    if (rom_buffer == NULL) 
+    {
         std::cerr << "Failed to allocate memory for ROM" << std::endl;
         return false;
     }
 
     // Copy ROM into buffer
     size_t result = fread(rom_buffer, sizeof(char), (size_t)rom_size, rom);
-    if (result != rom_size) {
+    if (result != rom_size) 
+    {
         std::cerr << "Failed to read ROM" << std::endl;
         return false;
     }
 
     // Copy buffer to memory
-    if ((4096-512) > rom_size){
-        for (int i = 0; i < rom_size; ++i) {
+    if ((4096-512) > rom_size)
+    {
+        for (int i = 0; i < rom_size; ++i) 
+        {
             memory[i + 512] = (uint8_t)rom_buffer[i];   // Load into memory starting
                                                         // at 0x200 (=512)
         }
     }
-    else {
+    else 
+    {
         std::cerr << "ROM too large to fit in memory" << std::endl;
         return false;
     }
