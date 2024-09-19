@@ -30,31 +30,36 @@ Chip8::Chip8() {}
 Chip8::~Chip8() {}
 
 // Initialise
-void Chip8::init() {
+void Chip8::init() 
+{
     pc      = 0x200;    // Set program counter to 0x200
     opcode  = 0;        // Reset op code
     I     = 0;          // Reset I
     sp      = 0;        // Reset stack pointer
 
     // Clear the display
-    for (int i = 0; i < 2048; ++i) {
+    for (int i = 0; i < 2048; ++i) 
+    {
         gfx[i] = 0;
     }
 
     // Clear the stack, keypad, and V registers
-    for (int i = 0; i < 16; ++i) {
+    for (int i = 0; i < 16; ++i) 
+    {
         stack[i]    = 0;
         key[i]      = 0;
         V[i]        = 0;
     }
 
     // Clear memory
-    for (int i = 0; i < 4096; ++i) {
+    for (int i = 0; i < 4096; ++i) 
+    {
         memory[i] = 0;
     }
 
     // Load font set into memory
-    for (int i = 0; i < 80; ++i) {
+    for (int i = 0; i < 80; ++i) 
+    {
         memory[i] = chip8_fontset[i];
     }
 
@@ -119,7 +124,8 @@ bool Chip8::load(const char *file_path) {
 }
 
 // Emulate one cycle
-void Chip8::emulate_cycle() {
+void Chip8::emulate_cycle() 
+{
 
     // Fetch op code
     opcode = memory[pc] << 8 | memory[pc + 1];   // Op code is two bytes
@@ -132,7 +138,8 @@ void Chip8::emulate_cycle() {
             switch (opcode & 0x000F) {
                 // 00E0 - Clear screen
                 case 0x0000:
-                    for (int i = 0; i < 2048; ++i) {
+                    for (int i = 0; i < 2048; ++i)
+                    {
                         gfx[i] = 0;
                     }
                     drawFlag = true;
