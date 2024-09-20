@@ -137,7 +137,8 @@ void Chip8::emulate_cycle()
     // Fetch op code
     opcode = memory[pc] << 8 | memory[pc + 1];   // Op code is two bytes
 
-    switch(opcode & 0xF000){
+    switch(opcode & 0xF000)
+    {
 
         // 00E_
         case 0x0000:
