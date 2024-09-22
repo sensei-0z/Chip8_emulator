@@ -198,8 +198,10 @@ void Chip8::emulate_cycle()
 
         // 5XY0 - Skips the next instruction if VX equals VY.
         case 0x5000:
-            if (V[(opcode & 0x0F00) >> 8] == V[(opcode & 0x00F0) >> 4])
-                pc += 4;
+            if (V[(opcode & 0x0F00) >> 8] == V[(opcode & 0x00F0) >> 4]) 
+                //0x0F00 masks out all but the fourth nibble (four bits) of the opcode, leaving only the value of VX
+                //0x00F0 masks out the third nibble
+                pc += 4; // Skips the next instruction if VX equals NN
             else
                 pc += 2;
             break;
