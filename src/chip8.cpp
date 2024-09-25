@@ -182,8 +182,9 @@ void Chip8::emulate_cycle()
 
         // 3XNN - Skips the next instruction if VX equals NN.
         case 0x3000:
+            // Extracting the register VX from the opcode
             if (V[(opcode & 0x0F00) >> 8] == (opcode & 0x00FF))
-                pc += 4;
+                pc += 4; //Skips the next instruction if VX equals NN.
             else
                 pc += 2;
             break;
