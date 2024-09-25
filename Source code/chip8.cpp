@@ -191,7 +191,8 @@ void Chip8::emulate_cycle()
 
         // 4XNN - Skips the next instruction if VX does not equal NN.
         case 0x4000:
-            if (V[(opcode & 0x0F00) >> 8] != (opcode & 0x00FF))
+            if (V[(opcode & 0x0F00) >> 8] != (opcode & 0x00FF)) 
+                //We shift them (>> 8) to the least significant bit positions (so we can use the extracted values directly).
                 pc += 4;
             else
                 pc += 2;
