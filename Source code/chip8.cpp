@@ -222,8 +222,8 @@ void Chip8::emulate_cycle()
 
         // 8XY_
         case 0x8000:
-            switch (opcode & 0x000F) {
-
+            switch (opcode & 0x000F) 
+            {
                 // 8XY0 - Sets VX to the value of VY.
                 case 0x0000:
                     V[(opcode & 0x0F00) >> 8] = V[(opcode & 0x00F0) >> 4];
@@ -248,11 +248,14 @@ void Chip8::emulate_cycle()
                     pc += 2;
                     break;
 
-                // 8XY4 - Adds VY to VX. VF is set to 1 when there's a carry,
+                // 8XY4 - Adds VY to VX. VF is set to 1 when there's a overflow (carry),
                 // and to 0 when there isn't.
                 case 0x0004:
                     V[(opcode & 0x0F00) >> 8] += V[(opcode & 0x00F0) >> 4];
-                    if(V[(opcode & 0x00F0) >> 4] > (0xFF - V[(opcode & 0x0F00) >> 8]))
+                    if(V[(opcode & 0x00F0) >> 4] > (0xFF - V[(opcode & 0x0F00) >> 8])) 
+                    //VY > (255 - VX)
+                    //If true, this means the sum of VX + VY exceeds 255, resulting in a carry.
+                    //0xFF is the maximum value that an 8-bit register can hold (255 in decimal).
                         V[0xF] = 1; //carry
                     else
                         V[0xF] = 0;
