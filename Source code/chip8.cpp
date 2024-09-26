@@ -253,10 +253,11 @@ void Chip8::emulate_cycle()
                 case 0x0004:
                     V[(opcode & 0x0F00) >> 8] += V[(opcode & 0x00F0) >> 4];
                     if(V[(opcode & 0x00F0) >> 4] > (0xFF - V[(opcode & 0x0F00) >> 8])) 
-                    //VY > (255 - VX)
-                    //If true, this means the sum of VX + VY exceeds 255, resulting in a carry.
-                    //0xFF is the maximum value that an 8-bit register can hold (255 in decimal).
-                        V[0xF] = 1; //carry
+                    // VY > (255 - VX)
+                    // If true, this means the value of VX + VY exceeds 255, resulting in a carry.
+                    // 0xFF is the maximum value that an 8-bit register can hold (255 in decimal).
+                        V[0xF] = 1; // Carry, In CHIP-8, the VF register is commonly used as a carry flag.
+                        // VF = V[0xF]
                     else
                         V[0xF] = 0;
                     pc += 2;
@@ -265,7 +266,7 @@ void Chip8::emulate_cycle()
                 // 8XY5 - VY is subtracted from VX. VF is set to 0 when
                 // there's a borrow, and 1 when there isn't.
                 case 0x0005:
-                    if(V[(opcode & 0x00F0) >> 4] > V[(opcode & 0x0F00) >> 8])
+                    if(V[(opcode & 0x00F0) >> 4] > V[(opcode & 0x0F00) >> 8]) // VY > VX
                         V[0xF] = 0; // there is a borrow
                     else
                         V[0xF] = 1;
