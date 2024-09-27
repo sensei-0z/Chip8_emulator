@@ -274,13 +274,12 @@ void Chip8::emulate_cycle()
                     pc += 2;
                     break;
 
-                // 0x8XY6 - Shifts VX right by one. VF is set to the value of
-                // the least significant bit of VX before the shift.
+                // Stores the least significant bit of VX in VF and then shifts VX to the right by 1
                 case 0x0006:
                     V[0xF] = V[(opcode & 0x0F00) >> 8] & 0x1;
                     // The bitwise AND operation (& 0x1) extracts the LSB of VX. 
                     // In binary, 0x1 is 00000001, so only the last bit of VX is checked.
-                    V[(opcode & 0x0F00) >> 8] >>= 1;
+                    V[(opcode & 0x0F00) >> 8] >>= 1; // V[X] = V[X] >> 1;
                     pc += 2;
                     break;
 
