@@ -278,6 +278,8 @@ void Chip8::emulate_cycle()
                 // the least significant bit of VX before the shift.
                 case 0x0006:
                     V[0xF] = V[(opcode & 0x0F00) >> 8] & 0x1;
+                    // The bitwise AND operation (& 0x1) extracts the LSB of VX. 
+                    // In binary, 0x1 is 00000001, so only the last bit of VX is checked.
                     V[(opcode & 0x0F00) >> 8] >>= 1;
                     pc += 2;
                     break;
