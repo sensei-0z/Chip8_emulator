@@ -6,6 +6,16 @@
 
 #include "chip8.h"
 
+/*
+NNN: address
+NN: 8-bit constant
+N: 4-bit constant
+X and Y: 4-bit register identifier
+PC : Program Counter
+I : 16bit register (For memory address) (Similar to void pointer)
+VN: One of the 16 available variables. N may be 0 to F (hexadecimal)
+*/
+
 unsigned char chip8_fontset[80] =
 {
     0xF0, 0x90, 0x90, 0x90, 0xF0, //0
@@ -82,10 +92,10 @@ bool Chip8::load(const char *file_path)
     // Open ROM file
     FILE* rom = fopen(file_path, "rb");
     if (rom == NULL) 
-    {
-        std::cerr << "Failed to open ROM" << std::endl;
-        return false;
-    }
+        {
+            std::cerr << "Failed to open ROM" << std::endl;
+            return false;
+        }
 
     // Get file size
     fseek(rom, 0, SEEK_END);
@@ -95,33 +105,33 @@ bool Chip8::load(const char *file_path)
     // Allocate memory to store rom
     char* rom_buffer = (char*) malloc(sizeof(char) * rom_size);
     if (rom_buffer == NULL) 
-    {
-        std::cerr << "Failed to allocate memory for ROM" << std::endl;
-        return false;
-    }
+        {
+            std::cerr << "Failed to allocate memory for ROM" << std::endl;
+            return false;
+        }
 
     // Copy ROM into buffer
     size_t result = fread(rom_buffer, sizeof(char), (size_t)rom_size, rom);
     if (result != rom_size) 
-    {
-        std::cerr << "Failed to read ROM" << std::endl;
-        return false;
-    }
+        {
+            std::cerr << "Failed to read ROM" << std::endl;
+            return false;
+        }
 
     // Copy buffer to memory
     if ((4096-512) > rom_size)
-    {
-        for (int i = 0; i < rom_size; ++i) 
         {
-            memory[i + 512] = (uint8_t)rom_buffer[i];   // Load into memory starting
-                                                        // at 0x200 (=512)
+            for (int i = 0; i < rom_size; ++i) 
+            {
+                memory[i + 512] = (uint8_t)rom_buffer[i];   // Load into memory starting
+                                                            // at 0x200 (=512)
+            }
         }
-    }
     else 
-    {
-        std::cerr << "ROM too large to fit in memory" << std::endl;
-        return false;
-    }
+        {
+            std::cerr << "ROM too large to fit in memory" << std::endl;
+            return false;
+        }
 
     // Clean up
     fclose(rom);
